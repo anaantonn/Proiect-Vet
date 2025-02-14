@@ -15,7 +15,7 @@ python3 manage.py migrate
 
     Creaza noi specii si noi rase:
         Specie.objects.create(nume="Porc")
-        Rasa.objects.create(nume="Duroc", id_specie=Specie.objects.get(id=4))
+        Rasa.objects.create(nume="Duroc", id_specie=Specie.objects.get(nume="Porc"))
 
     Stegre speciile/rasele deja existente => Eroare:
         specie = Specie.objects.get(nume="Caine")
