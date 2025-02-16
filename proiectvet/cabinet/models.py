@@ -1,6 +1,20 @@
 from django.db import models
 
 # Create your models here.
+
+class Client(models.Model):
+    """Tabela client.
+    
+    Tabela contine campurile necesare adaugarii unui proprietar.
+    """
+    nume = models.CharField(max_length=100)
+    prenume = models.CharField(max_length=100)
+    telefon = models.CharField(max_length=20)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.nume
+
 class Specie(models.Model):
     """Tabela specii.
     
@@ -57,3 +71,36 @@ class Rasa(models.Model):
 
     def __str__(self):
         return self.nume
+    
+class Pacient(models.Model):
+    """Tabela pacient.
+    
+    Tabela contine campurile necesare adaugarii unui pacient.
+    """
+
+    nume = models.CharField(max_length=100)
+    sex = models.CharField(max_length=1)
+    data_nastere = models.DateField()
+    id_rasa = models.ForeignKey(Rasa, on_delete=models.DO_NOTHING)
+    id_proprietar = models.ForeignKey(Client, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nume
+
+class Consult(models.Model):
+    """Tabela consult.
+    
+    Tabela contine campurile necesare efectuarii unui consult complet.
+    """
+
+    data = models.DateField(auto_now=True)
+    anamneza = models.TextField()
+    temperatura = models.FloatField()
+    greutate = models.FloatField()
+    heart_rate = models.FloatField()
+    respiratory_rate = models.FloatField()
+    observatii = models.TextField()
+    id_pacient = models.ForeignKey(Pacient, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.anamneza

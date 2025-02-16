@@ -1,13 +1,13 @@
 # Primii pasi
 
-python3 manage.py runserver\
 python3 manage.py makemigrations\
-python3 manage.py migrate
+python3 manage.py migrate\
+python3 manage.py runserver
 
 ## Verifica CRUD din terminal
 
     python3 manage.py shell:
-        from specie_rasa.models import Specie, Rasa
+        from cabinet.models import Client, Consult, Pacient, Rasa, Specie
         specii = Specie.objects.all()
         rase = Rasa.objects.all()
         print(specii)

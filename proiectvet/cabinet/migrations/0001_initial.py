@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nume', models.CharField(max_length=100, unique=True)),
                 ('protected', models.BooleanField(default=False)),
-                ('id_specie', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='specie_rasa.specie')),
+                ('id_specie', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cabinet.specie')),
             ],
         ),
     ]

@@ -4,7 +4,7 @@ from django.db import migrations
 
 def adauga_specii_default(apps, schema_editor):
     """Adauga specii predefinite in tabel."""
-    Specie = apps.get_model('specie_rasa', 'Specie')
+    Specie = apps.get_model('cabinet', 'Specie')
     specii_predefinite = ["Caine", "Pisica"]
 
     for specie in specii_predefinite:
@@ -13,8 +13,8 @@ def adauga_specii_default(apps, schema_editor):
 
 def adauga_rase_default(apps, schema_editor):
     """Adauga rase predefinite, specifice fiecarei specii in tabel."""
-    Rasa = apps.get_model('specie_rasa', 'Rasa')
-    Specie = apps.get_model('specie_rasa', 'Specie')
+    Rasa = apps.get_model('cabinet', 'Rasa')
+    Specie = apps.get_model('cabinet', 'Specie')
 
     try:
         caine = Specie.objects.get(nume="Caine")
@@ -32,7 +32,7 @@ def adauga_rase_default(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('specie_rasa', '0001_initial'),
+        ('cabinet', '0001_initial'),
     ]
 
     operations = [
