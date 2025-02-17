@@ -1,0 +1,11 @@
+<h1> Lista specii. </h1>
+{% for specie in specii %}
+    <span>{{specie.nume}}</span>
+    {% if not specie.protected %}
+        <span> | <a href="./sterge_specie/{{specie.id}}">Sterge</a></span>
+        <span> / <a href="./editeaza_specie/{{specie.id}}">Modifica</a></span>
+        <span> / <a href="{% url 'adauga_rasa' specie.id %}"">Adauga rasa</a></span>
+    {% endif %}
+    <br>
+{% endfor %}
+<p><a href="./adauga_specie">Adauga specie</a></p>
