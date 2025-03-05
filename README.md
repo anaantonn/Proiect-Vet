@@ -1,22 +1,32 @@
-# Primii pasi
+# First steps
 
-python3 manage.py makemigrations\
-python3 manage.py migrate\
+Create a new ```.env``` file in the main ```proiectvet``` directory.\
+*Example:*
+
+```bash
+
+ENGINE=django.db.backends.postgresql
+DB_NAME=name
+DB_USERNAME=username
+DB_PASSWORD=passwd
+DB_HOST=hostname
+DB_PORT=portnr
+DJANGO_SECRET_KEY=yoursecretkey
+DJANGO_DEBUG=True
+DJANGO_TIMEZONE=yourtimezone
+
+```
+
+## Make migrations and start the server
+
+Make sure you are in the right directory:
+
+```bash
+/path-to-your-directory/proiectvet
+```
+
+```python
+python3 manage.py makemigrations proiectvet
+python3 manage.py migrate
 python3 manage.py runserver
-
-## Verifica CRUD din terminal
-
-    python3 manage.py shell:
-        from cabinet.models import Client, Consult, Pacient, Rasa, Specie
-        specii = Specie.objects.all()
-        rase = Rasa.objects.all()
-        print(specii)
-        print(rasa)
-
-    Creaza noi specii si noi rase:
-        Specie.objects.create(nume="Porc")
-        Rasa.objects.create(nume="Duroc", id_specie=Specie.objects.get(nume="Porc"))
-
-    Stegre speciile/rasele deja existente => Eroare:
-        specie = Specie.objects.get(nume="Caine")
-        specie.delete()
+```

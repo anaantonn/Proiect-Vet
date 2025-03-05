@@ -1,9 +1,0 @@
-<h1> Lista rase. </h1>
-{% for rasa in rase %}
-    <span>{{rasa.nume}}</span>
-    {% if not rasa.protected %}
-        <span> | <a href="./sterge_rasa/{{rasa.id}}">Sterge</a></span>
-        <span> / <a href="./editeaza_rasa/{{rasa.id}}">Modifica</a></span>
-    {% endif %}
-    <br>
-{% endfor %}

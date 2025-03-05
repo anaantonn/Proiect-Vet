@@ -16,10 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from . import views
+from rest_framework.routers import DefaultRouter
+from proiectvet.viewsets.rasa import RasaViewSet
+from proiectvet.viewsets.specie import SpecieViewSet
+
+router = DefaultRouter()
+router.register(r'rasa', RasaViewSet, basename='rasa')
+router.register(r'specie', SpecieViewSet, basename='specie')
 
 urlpatterns = [
-     path('', views.homepage),
-     path('', include('cabinet.urls')),
+     path('', include(router.urls)),
      path('admin/', admin.site.urls),   
 ]

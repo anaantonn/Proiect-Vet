@@ -1,7 +1,6 @@
 from django.db import models
-from cabinet.models.specie import Specie
+from .specie import Specie
 
-# Create your models here.
 
 class Rasa(models.Model):
     """Tabela rase.
@@ -17,5 +16,8 @@ class Rasa(models.Model):
     id_specie = models.ForeignKey(Specie, on_delete=models.CASCADE)
     protected = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name_plural = "Rase"
+    
     def __str__(self):
-        return self.nume
+        return f"{self.id} - {self.nume}"

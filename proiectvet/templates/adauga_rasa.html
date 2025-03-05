@@ -1,6 +1,0 @@
-<h1>Adaugă rase pentru: {{ specie.nume }}</h1>
-<form method="POST" action="{% url 'adauga_rasa' specie.id %}" enctype="multipart/form-data">
-    {% csrf_token %}
-        {{form}}<br>
-    <button>Adauga rasa</button>
-</form>

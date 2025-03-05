@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 
 class Specie(models.Model):
     """Tabela specii.
@@ -15,5 +14,8 @@ class Specie(models.Model):
     nume = models.CharField(max_length=100, unique=True)
     protected = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name_plural = "Specii"
+
     def __str__(self):
-        return self.nume
+        return f"{self.id} - {self.nume}"
