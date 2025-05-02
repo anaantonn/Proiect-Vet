@@ -19,7 +19,7 @@
 4. Copy and fill in the `.env.example` file
 
     ```bash
-    cp proiectvet/.env.examsample proiectvet/.env
+    cp proiectvet/.env.sample proiectvet/.env
     ```
 
 5. Make migrations + migrate
