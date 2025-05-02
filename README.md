@@ -1,39 +1,45 @@
-# First steps
+# Proiect-Vet
 
-Clone the repo using ```git clone https://github.com/anaantonn/Proiect-Vet.git```\
-Navigate to the newly created directory.\
-Create a virtual enviroment using your preferred method.\
-Install the necessary packages and dependencies using ```pip install -r requirements.txt```\
-Create a new ```.env``` file in the first ```proiectvet``` directory.\
-*Example:*
+## Getting started
 
-```bash
+1. Clone the repo and enter the directory
 
-ENGINE=django.db.backends.postgresql
-DB_NAME=name
-DB_USERNAME=username
-DB_PASSWORD=passwd
-DB_HOST=hostname
-DB_PORT=portnr
-DJANGO_SECRET_KEY=yoursecretkey
-DJANGO_DEBUG=True
-DJANGO_TIMEZONE=yourtimezone
+    ```bash
+        git clone https://github.com/anaantonn/Proiect-Vet.git
+        cd Proiect-Vet
+    ```
 
-```
+2. Create a python virtual enviroment
+3. Install dependencies
 
-## Make migrations and start the server
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Make sure you are in the right directory:
+4. Copy and fill in the `.env.example` file
 
-```bash
-/path-to-your-directory/proiectvet
-```
+    ```bash
+    cp proiectvet/.env.example proiectvet/.env
+    ```
 
-```python
-python3 manage.py makemigrations proiectvet
-python3 manage.py migrate
-python3 manage.py runserver
-```
+5. Make migrations + migrate
+
+    ```bash
+    python3 proiectvet/manage.py makemigrations proiectvet
+    python3 proiectvet/manage.py migrate
+    ```
+
+6. Create an `admin` user for the django admin page:
+
+    ```bash
+    python3 proiectvet/manage.py createsuperuser
+    ```
+
+7. Start the development server
+
+    ```bash
+    python3 manage.py runserver
+    ```
 
 ### Using POSTMAN
 

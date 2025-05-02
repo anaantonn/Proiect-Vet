@@ -9,3 +9,6 @@ __pycache__/
 
 #Ignore db file
 db.sqlite3
+
+# Ignore aditional files
+rezerve.txt
