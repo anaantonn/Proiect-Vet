@@ -9,5 +9,8 @@ class Deparazitare(models.Model):
     nume = models.CharField(max_length=100)
     data_administrare = models.DateField()
 
+    class Meta:
+        verbose_name_plural = "Deparazitari"
+
     def __str__(self):
         return self.nume
