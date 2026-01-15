@@ -22,6 +22,8 @@ from proiectvet.viewsets.client import ClientViewSet
 from proiectvet.viewsets.consult import ConsultViewSet
 from proiectvet.viewsets.deparazitare import DeparazitareViewSet
 from proiectvet.viewsets.pacient import PacientViewSet
+from proiectvet.viewsets.pret import PretViewSet
+from proiectvet.viewsets.protocol import ProtocolViewSet
 from proiectvet.viewsets.rasa import RasaViewSet
 from proiectvet.viewsets.specie import SpecieViewSet
 from proiectvet.viewsets.vaccin import VaccinViewSet
@@ -32,6 +34,8 @@ router.register(r'client', ClientViewSet, basename='client')
 router.register(r'consult', ConsultViewSet, basename='consult')
 router.register(r'deparazitare', DeparazitareViewSet, basename='deparazitare')
 router.register(r'pacient', PacientViewSet, basename='pacient')
+router.register(r'pret', PretViewSet, basename='pret')
+router.register(r'protocol', ProtocolViewSet, basename='protocol')
 router.register(r'rasa', RasaViewSet, basename='rasa')
 router.register(r'specie', SpecieViewSet, basename='specie')
 router.register(r'vaccin', VaccinViewSet, basename='vaccin')

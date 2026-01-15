@@ -1,13 +1,13 @@
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
-from proiectvet.models.client import Client
-from proiectvet.serializers.client import ClientSerializer
+from proiectvet.models.pret import Pret
+from proiectvet.serializers.pret import PretSerializer
 
 
-class ClientViewSet(viewsets.ModelViewSet):
-    queryset = Client.objects.all()
-    serializer_class = ClientSerializer
+class PretViewSet(viewsets.ModelViewSet):
+    queryset = Pret.objects.all()
+    serializer_class = PretSerializer
 
     def create(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -18,11 +18,10 @@ class ClientViewSet(viewsets.ModelViewSet):
 
     def update(self, request, pk=None):
         try:
-            client = Client.objects.get(pk=pk)
+            pret = Pret.objects.get(pk=pk)
             serializer = self.get_serializer(
-                client,
-                data=request.data,
-                partial=True
+                pret,
+                data=request.data, partial=True
                 )
             if serializer.is_valid():
                 serializer.save()
@@ -31,19 +30,19 @@ class ClientViewSet(viewsets.ModelViewSet):
                 serializer.errors,
                 status=status.HTTP_400_BAD_REQUEST
                 )
-        except Client.DoesNotExist:
+        except Pret.DoesNotExist:
             return Response(
-                {"error": "Client not found!"},
+                {"error": "Pret not found!"},
                 status=status.HTTP_404_NOT_FOUND
                 )
 
     def destroy(self, request, pk=None):
         try:
-            client = Client.objects.get(pk=pk)
-            client.delete()
-            return Response({"message": "Client deleted successfully!"})
-        except Client.DoesNotExist:
+            pret = Pret.objects.get(pk=pk)
+            pret.delete()
+            return Response({"message": "Pret deleted successfully!"})
+        except Pret.DoesNotExist:
             return Response(
-                {"error": "Client not found!"},
+                {"error": "Pret not found!"},
                 status=status.HTTP_404_NOT_FOUND
                 )

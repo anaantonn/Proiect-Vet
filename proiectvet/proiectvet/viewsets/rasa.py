@@ -17,7 +17,10 @@ class RasaViewSet(viewsets.ModelViewSet):
         try:
             Specie.objects.get(pk=id_specie)
         except Specie.DoesNotExist:
-            return Response({"error": "Specie not found!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"error": "Specie not found!"},
+                status=status.HTTP_404_NOT_FOUND
+                )
 
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -29,22 +32,40 @@ class RasaViewSet(viewsets.ModelViewSet):
         try:
             rasa = Rasa.objects.get(pk=pk)
             if rasa.protected:
-                return Response({"error": "Rasa cannot be modified!"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"error": "Rasa cannot be modified!"},
+                    status=status.HTTP_400_BAD_REQUEST
+                    )
 
-            serializer = self.get_serializer(rasa, data=request.data, partial=True)
+            serializer = self.get_serializer(
+                rasa,
+                data=request.data,
+                partial=True)
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST
+                )
         except Rasa.DoesNotExist:
-            return Response({"error": "Rasa not found!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"error": "Rasa not found!"},
+                status=status.HTTP_404_NOT_FOUND
+                )
 
     def destroy(self, request, pk=None):
         try:
             rasa = Rasa.objects.get(pk=pk)
             if rasa.protected:
-                return Response({"error": "Rasa cannot be modified!"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"error": "Rasa cannot be modified!"},
+                    status=status.HTTP_400_BAD_REQUEST
+                    )
             rasa.delete()
-            return Response({"message": "Rasa deleted successfully!"}, status=status.HTTP_204_NO_CONTENT)
+            return Response({"message": "Rasa deleted successfully!"})
         except Rasa.DoesNotExist:
-            return Response({"error": "Rasa not found!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"error": "Rasa not found!"},
+                status=status.HTTP_404_NOT_FOUND
+                )

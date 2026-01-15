@@ -2,6 +2,8 @@ from .client import Client
 from .consult import Consult
 from .deparazitare import Deparazitare
 from .pacient import Pacient
+from .pret import Pret
+from .protocol import Protocol
 from .rasa import Rasa
 from .specie import Specie
 from .vaccin import Vaccin

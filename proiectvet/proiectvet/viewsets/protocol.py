@@ -1,13 +1,13 @@
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
-from proiectvet.models.client import Client
-from proiectvet.serializers.client import ClientSerializer
+from proiectvet.models.protocol import Protocol
+from proiectvet.serializers.protocol import ProtocolSerializer
 
 
-class ClientViewSet(viewsets.ModelViewSet):
-    queryset = Client.objects.all()
-    serializer_class = ClientSerializer
+class ProtocolViewSet(viewsets.ModelViewSet):
+    queryset = Protocol.objects.all()
+    serializer_class = ProtocolSerializer
 
     def create(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -18,11 +18,10 @@ class ClientViewSet(viewsets.ModelViewSet):
 
     def update(self, request, pk=None):
         try:
-            client = Client.objects.get(pk=pk)
+            protocol = Protocol.objects.get(pk=pk)
             serializer = self.get_serializer(
-                client,
-                data=request.data,
-                partial=True
+                protocol,
+                data=request.data, partial=True
                 )
             if serializer.is_valid():
                 serializer.save()
@@ -31,19 +30,19 @@ class ClientViewSet(viewsets.ModelViewSet):
                 serializer.errors,
                 status=status.HTTP_400_BAD_REQUEST
                 )
-        except Client.DoesNotExist:
+        except Protocol.DoesNotExist:
             return Response(
-                {"error": "Client not found!"},
+                {"error": "Protocol not found!"},
                 status=status.HTTP_404_NOT_FOUND
                 )
 
     def destroy(self, request, pk=None):
         try:
-            client = Client.objects.get(pk=pk)
-            client.delete()
-            return Response({"message": "Client deleted successfully!"})
-        except Client.DoesNotExist:
+            protocol = Protocol.objects.get(pk=pk)
+            protocol.delete()
+            return Response({"message": "Protocol deleted successfully!"})
+        except Protocol.DoesNotExist:
             return Response(
-                {"error": "Client not found!"},
+                {"error": "Protocol not found!"},
                 status=status.HTTP_404_NOT_FOUND
                 )
