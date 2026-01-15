@@ -1,0 +1,43 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: proiect-vet
+        restart: always
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/app
+            - ./media:/app/media
+        ports:
+            - "8000:8000"
+        environment:
+            - DEBUG=1
+            - DB_HOST=db
+            - DB_NAME=${DB_NAME}
+            - DB_USER=${DB_USERNAME}
+            - DB_PASS=${DB_PASSWORD}
+            - SECRET_KEY=${DJANGO_SECRET_KEY}
+        depends_on:
+            db:
+                condition: service_healthy
+
+    db:
+        image: postgres:15
+        container_name: proiect-vet-db
+        restart: always
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_DB=${DB_NAME}
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+        ports:
+            - "5432:5432"
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME}"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+volumes:
+    postgres-data:
